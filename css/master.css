@@ -1,3 +1,12 @@
+.field.size-selector {
+  padding: 2px 0px;
+}
+
+.ui.basic.button {
+  margin: 5px 0px;
+  margin-right: 5px;
+}
+
 .selector-padding {
   line-height: 2em;
 }

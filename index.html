@@ -9,37 +9,26 @@
 
   <!-- Site Properties -->
   <title>Cropr - Photo Resizing Made Easy</title>
+
   <link rel="icon" href="http://www.clker.com/cliparts/0/0/8/b/11949945231683916384crop.svg.hi.png">
   <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
   <link rel="stylesheet" type="text/css" href="css/master.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="script/script.js"></script>
-  <script src="semantic/script.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/jquery.Jcrop.min.css">
+
+  <script src="script/jquery.min.js"></script>
+
   <script src="semantic/components/visibility.min.js"></script>
   <script src="semantic/components/accordion.js"></script>
   <script src="semantic/components/sidebar.min.js"></script>
   <script src="semantic/components/transition.min.js"></script>
+  <script src="semantic/script.js"></script>
+
+  <script src="script/jquery.Jcrop.min.js"></script>
+  <script src="script/image_crop.js"></script>
+  <script src="script/script.js"></script>
 </head>
 
 <body>
-  <!-- Following Menu -->
-  <div class="ui large top fixed hidden menu">
-    <div class="ui container">
-      <a class="active item">Home</a>
-      <a class="item">Work</a>
-      <a class="item">Company</a>
-      <a class="item">Careers</a>
-      <div class="right menu">
-        <div class="item">
-          <a class="ui button">Log in</a>
-        </div>
-        <div class="item">
-          <a class="ui primary button">Sign Up</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Page Contents -->
   <div class="pusher">
     <div class="ui inverted vertical masthead center aligned segment">
@@ -49,7 +38,7 @@
           <a class="toc item"><i class="sidebar icon"></i></a>
           <a class="active item" href="#">Cropr</a>
           <a class="item">Guide</a>
-          <a class="item">Source</a>
+          <a class="item" href="https://github.com/philipwutang/Cropr">Source</a>
           <div class="right item">
             <a class="ui inverted button" href="http://polar.me/">Visit Polar</a>
           </div>
@@ -59,11 +48,14 @@
       <div class="ui text container">
         <h1 class="ui inverted header">Cropr</h1>
         <h2>Photo Resizing Made Easy</h2>
-        <div class="ui huge primary button">Begin<i class="right arrow icon"></i></div>
+        <a href="#target" class="ui huge primary button">Begin
+          <i class="right arrow icon"></i>
+        </a>
       </div>
 
     </div>
 
+    <a name="target"></a>
     <div class="ui vertical stripe segment">
       <div class="ui container">
         <h3 class="header">Crop Away</h3>
@@ -78,26 +70,14 @@
                       <div class="grouped fields">
                         <div class="field">
                           <div class="ui">
-                            <input type="text" name="size">
+                            <input type="text" />
                             <label class="selector-padding">Width (px)</label>
                           </div>
                         </div>
                         <div class="field">
                           <div class="ui">
-                            <input type="text" name="size">
+                            <input type="text" />
                             <label class="selector-padding">Height (px)</label>
-                          </div>
-                        </div>
-                        <div class="field">
-                          <div class="ui square checkbox">
-                            <input type="checkbox" name="size" value="large">
-                            <label>Set Size</label>
-                          </div>
-                        </div>
-                        <div class="field">
-                          <div class="ui square checkbox">
-                            <input type="checkbox" name="size" value="x-large">
-                            <label>Free Form</label>
                           </div>
                         </div>
                       </div>
@@ -105,31 +85,37 @@
                   </div>
                 </div>
                 <div class="item">
-                  <a class="title"><i class="dropdown icon"></i>Presets</a>
-                  <div class="content">
-                    <div class="ui form">
+                  <a class="active title"><i class="dropdown icon"></i>Presets</a>
+                  <div class="active content">
+                    <div class="ui">
                       <div class="grouped fields">
-                        <div class="field">
+                        <div class="field size-selector">
                           <div class="ui radio checkbox">
-                            <input type="radio" name="size" value="small">
+                            <input type="radio" name="ratio" />
+                            <label>Freeform</label>
+                          </div>
+                        </div>
+                        <div class="field size-selector">
+                          <div class="ui radio checkbox">
+                            <input type="radio" id="1" name="ratio" />
                             <label>1:1 (Square)</label>
                           </div>
                         </div>
-                        <div class="field">
+                        <div class="field size-selector">
                           <div class="ui radio checkbox">
-                            <input type="radio" name="size" value="medium">
+                            <input type="radio" id="1.5" name="ratio" />
                             <label>3:2</label>
                           </div>
                         </div>
-                        <div class="field">
+                        <div class="field size-selector">
                           <div class="ui radio checkbox">
-                            <input type="radio" name="size" value="large">
+                            <input type="radio" id="1.333333" name="ratio" />
                             <label>4:3</label>
                           </div>
                         </div>
-                        <div class="field">
+                        <div class="field size-selector">
                           <div class="ui radio checkbox">
-                            <input type="radio" name="size" value="x-large">
+                            <input type="radio" id="1.777778" name="ratio" />
                             <label>16:9</label>
                           </div>
                         </div>
@@ -138,14 +124,22 @@
                   </div>
                 </div>
               </div>
+
+              <button class="ui basic button"><i class="icon upload"></i>Upload</button>
+              <button class="ui basic button"><i class="icon crop"></i>Crop</button>
+              <button class="ui basic button"><i class="icon download"></i>Download</button>
+              <button class="ui basic button"><i class="icon square"></i>Set</button>
             </div>
 
             <div class="twelve wide column">
-              <div class="ui segment"></div>
+              <div class="ui segment">
+                <img src="resources/image.jpg" id="cropbox" style="width: 100%" />
+              </div>
             </div>
 
           </div>
         </div>
+
       </div>
     </div>
 
@@ -153,15 +147,17 @@
       <div class="ui container">
         <div class="ui stackable inverted divided equal height stackable grid">
           <div class="three wide column">
-            <h4 class="ui inverted header">About</h4>
+            <h4 class="ui inverted header">Polar</h4>
             <div class="ui inverted link list">
-              <a href="#" class="item">Sitemap</a>
+              <a href="#" class="item">About Us</a>
+              <a href="#" class="item">Toronto</a>
             </div>
           </div>
           <div class="three wide column">
-            <h4 class="ui inverted header">Services</h4>
+            <h4 class="ui inverted header">Help</h4>
             <div class="ui inverted link list">
-              <a href="#" class="item">Banana Pre-Order</a>
+              <a href="#" class="item">FAQ</a>
+              <a href="#" class="item">Source Code</a>
             </div>
           </div>
           <div class="seven wide column">
