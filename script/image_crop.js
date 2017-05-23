@@ -1,5 +1,5 @@
 $(function() {
-  $('#cropper').Jcrop({
+  $('#cropbox').Jcrop({
     trackDocument: true,
     onChange: showCoords,
     onSelect: showCoords,
