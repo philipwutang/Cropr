@@ -25,7 +25,7 @@
 
   <script src="script/jquery.Jcrop.min.js"></script>
   <!-- <script src="script/image_crop.js"></script> -->
-  <script type="text/javascript" src="script/script.js"></script>
+  <script src="script/script.js"></script>
 </head>
 
 <body>
@@ -69,16 +69,24 @@
                     <div class="ui form">
                       <div class="grouped fields">
                         <div class="field">
-                          <div class="ui">
-                            <input type="text" id="width"/>
-                            <label class="selector-padding">Width (px)</label>
+                          <div class="ui right labeled input fluid">
+                            <input type="text" id="width" placeholder="Width">
+                            <div class="ui basic label">px</div>
                           </div>
                         </div>
                         <div class="field">
-                          <div class="ui">
-                            <input type="text" id="height"/>
-                            <label class="selector-padding">Height (px)</label>
+                          <div class="ui right labeled input fluid">
+                            <input type="text" id="height" placeholder="Height">
+                            <div class="ui basic label">px</div>
                           </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="ui form">
+                      <div class="grouped fields">
+                        <div class="ui checkbox">
+                          <input type="checkbox" id="freeform" name="freeform">
+                          <label>Freeform</label>
                         </div>
                       </div>
                     </div>
@@ -90,31 +98,25 @@
                     <div class="ui">
                       <div class="grouped fields">
                         <div class="field size-selector">
-                          <div class="ui radio checkbox">
-                            <input type="radio" name="ratio" checked="checked" />
-                            <label>Freeform</label>
-                          </div>
-                        </div>
-                        <div class="field size-selector">
-                          <div class="ui radio checkbox">
+                          <div class="ui radio checkbox" id="square">
                             <input type="radio" id="1:1" name="ratio" />
                             <label>1:1 (Square)</label>
                           </div>
                         </div>
                         <div class="field size-selector">
-                          <div class="ui radio checkbox">
+                          <div class="ui radio checkbox" id="3by2">
                             <input type="radio" id="3:2" name="ratio" />
                             <label>3:2</label>
                           </div>
                         </div>
                         <div class="field size-selector">
-                          <div class="ui radio checkbox">
+                          <div class="ui radio checkbox" id="4by3">
                             <input type="radio" id="4:3" name="ratio" />
                             <label>4:3</label>
                           </div>
                         </div>
                         <div class="field size-selector">
-                          <div class="ui radio checkbox">
+                          <div class="ui radio checkbox" id="hd">
                             <input type="radio" id="16:9" name="ratio" />
                             <label>16:9</label>
                           </div>
@@ -125,10 +127,10 @@
                 </div>
               </div>
 
-              <button class="ui basic button"><i class="icon upload"></i>Upload</button>
-              <button class="ui basic button" id="setSize" onclick="setImageSize()"><i class="icon square"></i>Set</button>
-              <button class="ui basic button"><i class="icon crop"></i>Crop</button>
-              <button class="ui basic button"><i class="icon download"></i>Download</button>
+              <button class="compact ui basic button"><i class="icon upload"></i>Upload</button>
+              <button class="compact ui basic button"><i class="icon download"></i>Download</button>
+              <button class="compact ui basic button" id="setImageSize"><i class="icon square"></i>Set</button>
+              <button class="compact ui basic button"><i class="icon crop"></i>Crop</button>
             </div>
 
             <div class="twelve wide column">
@@ -136,10 +138,8 @@
                 <img src="resources/image.jpg" id="cropbox" style="width: 100%" />
               </div>
             </div>
-
           </div>
         </div>
-
       </div>
     </div>
 
