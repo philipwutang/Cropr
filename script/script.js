@@ -1,39 +1,36 @@
 $(document).ready(function() {
+
   var jcrop_api, imageWidth, imageHeight;
 
-  jcrop_api = $.Jcrop('#cropbox');
+  // Initialize Cropr
+  function initialize() {
+    // Set up cropping API
+    jcrop_api = $.Jcrop('#cropbox');
 
-  // fix menu when passed
-  $('.masthead').visibility({
-    once: false,
-    onBottomPassed: function() {
-      $('.fixed.menu').transition('fade in');
-    },
-    onBottomPassedReverse: function() {
-      $('.fixed.menu').transition('fade out');
-    }
-  });
+    // Set up cropbox
+    jcrop_api.setOptions({
+      trackDocument: true,
+      onChange: showCoords,
+      onSelect: showCoords,
+      bgColor: 'black',
+      bgOpacity: .4
+    });
 
-  // create sidebar and attach to menu open
-  $('.ui.sidebar').sidebar('attach events', '.toc.item');
+    // Display the dimensions
+    function showCoords(c) {
+      imageWidth = Math.round(c.w);
+      imageHeight = Math.round(c.h);
+      $('#width').val(imageWidth);
+      $('#height').val(imageHeight);
+    };
 
-  $('.ui.accordion').accordion(function() {});
+    $('#freeform').prop('checked', true);
+    disableRatios();
+  }
 
-  jcrop_api.setOptions({
-    trackDocument: true,
-    onChange: showCoords,
-    onSelect: showCoords,
-    bgColor: 'black',
-    bgOpacity: .4
-  });
+  initialize();
 
-  function showCoords(c) {
-    imageWidth = Math.round(c.w);
-    imageHeight = Math.round(c.h);
-    $('#width').val(imageWidth);
-    $('#height').val(imageHeight);
-  };
-
+  // Turn on and off ratios
   function disableRatios() {
     document.getElementById('1:1').checked = false;
     document.getElementById('3:2').checked = false;
@@ -52,9 +49,11 @@ $(document).ready(function() {
     document.getElementById('hd').classList.remove("disabled");
   }
 
+  // Turn on and off freeforming
   function freeFormOn() {
     console.log("freeform");
     disableRatios();
+    document.getElementById('freeform').checked = true;
     jcrop_api.setOptions({
       aspectRatio: 0
     });
@@ -62,41 +61,45 @@ $(document).ready(function() {
 
   function freeFormOff() {
     document.getElementById('freeform').checked = false;
+    enableRatios();
+    jcrop_api.setOptions({
+      aspectRatio: 1
+    });
   }
 
+  // Event handler for the freeform checkbox
   $('input[name=freeform]').change(function() {
     if ($(this).is(':checked')) {
       freeFormOn();
     } else {
-      enableRatios();
-      jcrop_api.setOptions({
-        aspectRatio: 1
-      });
+      freeFormOff();
+      document.getElementById('1:1').checked = true;
     }
   });
 
+  // Event handlers for the ratio choices
   $('input').on('change', function() {
     switch (this.id) {
       case "1:1":
-        enableRatios();
+        freeFormOff();
         jcrop_api.setOptions({
           aspectRatio: 1
         });
         break;
       case "3:2":
-        enableRatios();
+        freeFormOff();
         jcrop_api.setOptions({
           aspectRatio: 3 / 2
         });
         break;
       case "4:3":
-        enableRatios();
+        freeFormOff();
         jcrop_api.setOptions({
           aspectRatio: 4 / 3
         });
         break;
       case "16:9":
-        enableRatios();
+        freeFormOff();
         jcrop_api.setOptions({
           aspectRatio: 16 / 9
         });
@@ -107,6 +110,25 @@ $(document).ready(function() {
     jcrop_api.focus();
   });
 
+  // Event handler for the set button
+  $('#uploadImage').on('click', function() {
+    console.log("uploadImage");
+    var preview = document.querySelector('img'); //selects the query named img
+    var file = document.querySelector('input[type=file]').files[0]; //sames as here
+    var reader = new FileReader();
+
+    reader.onloadend = function() {
+      preview.src = reader.result;
+    }
+
+    if (file) {
+      reader.readAsDataURL(file); //reads the data as a URL
+    } else {
+      preview.src = "";
+    }
+  });
+
+  // Event handler for the set button
   $('#setImageSize').on('click', function() {
     console.log("setImageSize");
     var width = $('#width').val();
@@ -114,11 +136,4 @@ $(document).ready(function() {
     jcrop_api.animateTo([0, 0, width, height]);
     freeFormOn();
   });
-
-  function init() {
-    $('#freeform').prop('checked', true);
-    disableRatios();
-  }
-
-  init();
 });
