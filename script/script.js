@@ -1,6 +1,8 @@
 $(document).ready(function() {
 
-  var jcrop_api, imageWidth, imageHeight;
+  var jcrop_api,
+    imageWidth,
+    imageHeight;
 
   // Initialize Cropr
   function initialize() {
@@ -8,13 +10,7 @@ $(document).ready(function() {
     jcrop_api = $.Jcrop('#cropbox');
 
     // Set up cropbox
-    jcrop_api.setOptions({
-      trackDocument: true,
-      onChange: showCoords,
-      onSelect: showCoords,
-      bgColor: 'black',
-      bgOpacity: .4
-    });
+    jcrop_api.setOptions({trackDocument: true, onChange: showCoords, onSelect: showCoords, bgColor: 'black', bgOpacity: .4});
 
     // Display the dimensions
     function showCoords(c) {
@@ -25,6 +21,8 @@ $(document).ready(function() {
     };
 
     $('#freeform').prop('checked', true);
+    $('#cropbox').Jcrop({boxWidth: 745});
+
     disableRatios();
   }
 
@@ -54,17 +52,13 @@ $(document).ready(function() {
     console.log("freeform");
     disableRatios();
     document.getElementById('freeform').checked = true;
-    jcrop_api.setOptions({
-      aspectRatio: 0
-    });
+    jcrop_api.setOptions({aspectRatio: 0});
   }
 
   function freeFormOff() {
     document.getElementById('freeform').checked = false;
     enableRatios();
-    jcrop_api.setOptions({
-      aspectRatio: 1
-    });
+    jcrop_api.setOptions({aspectRatio: 1});
   }
 
   // Event handler for the freeform checkbox
@@ -82,9 +76,7 @@ $(document).ready(function() {
     switch (this.id) {
       case "1:1":
         freeFormOff();
-        jcrop_api.setOptions({
-          aspectRatio: 1
-        });
+        jcrop_api.setOptions({aspectRatio: 1});
         break;
       case "3:2":
         freeFormOff();
@@ -111,29 +103,34 @@ $(document).ready(function() {
   });
 
   // Event handler for the set button
-  $('#uploadImage').on('click', function() {
-    console.log("uploadImage");
-    var preview = document.querySelector('img'); //selects the query named img
-    var file = document.querySelector('input[type=file]').files[0]; //sames as here
-    var reader = new FileReader();
-
-    reader.onloadend = function() {
-      preview.src = reader.result;
-    }
-
-    if (file) {
-      reader.readAsDataURL(file); //reads the data as a URL
-    } else {
-      preview.src = "";
-    }
-  });
-
-  // Event handler for the set button
   $('#setImageSize').on('click', function() {
     console.log("setImageSize");
     var width = $('#width').val();
     var height = $('#height').val();
     jcrop_api.animateTo([0, 0, width, height]);
     freeFormOn();
+  });
+
+  $('#uploadImage').on('click', function() {
+    console.log("uploadImage");
+
+    var newImage = "";
+
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+          newImage = e.target.result;
+          jcrop_api.setImage(newImage);
+          $('#cropbox').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    $("#uploadImage").change(function() {
+      readURL(this);
+    });
   });
 });

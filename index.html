@@ -127,10 +127,12 @@
                 </div>
               </div>
 
-              <button class="compact ui basic button" id="uploadImage">
-                <input type="file" name="" value="">
-                <i class="icon upload"></i>Upload
-              </button>
+              <label class="compact ui basic button">
+                <i class="upload icon"></i>Upload
+                <input id="uploadImage" type='file' accept="image/*" style="display:none" />
+              </label>
+
+              <input type="file" id="file" style="display:none">
               <button class="compact ui basic button"><i class="icon download"></i>Download</button>
               <button class="compact ui basic button" id="setImageSize"><i class="icon square"></i>Set</button>
               <button class="compact ui basic button"><i class="icon crop"></i>Crop</button>
@@ -138,7 +140,7 @@
 
             <div class="twelve wide column">
               <div class="ui segment">
-                <img src="resources/image.jpg" id="cropbox" style="width: 100%" />
+                <img id="cropbox" src="resources/image.jpg" style="width: 100% !important" />
               </div>
             </div>
           </div>
