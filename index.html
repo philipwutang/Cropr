@@ -16,16 +16,12 @@
   <link rel="stylesheet" type="text/css" href="css/jquery.Jcrop.min.css">
 
   <script src="script/jquery.min.js"></script>
-
   <script src="semantic/components/visibility.min.js"></script>
   <script src="semantic/components/accordion.js"></script>
   <script src="semantic/components/sidebar.min.js"></script>
   <script src="semantic/components/transition.min.js"></script>
   <script src="semantic/script.js"></script>
-
   <script src="script/jquery.Jcrop.min.js"></script>
-  <!-- <script src="script/image_crop.js"></script> -->
-  <script src="script/script.js"></script>
 </head>
 
 <body>
@@ -48,20 +44,19 @@
       <div class="ui text container">
         <h1 class="ui inverted header">Cropr</h1>
         <h2>Photo Resizing Made Easy</h2>
-        <a href="#cropr" class="ui huge primary button">Begin
+        <a id="begin" class="ui huge primary button">Begin
           <i class="right arrow icon"></i>
         </a>
       </div>
 
     </div>
 
-    <a name="cropr"></a>
-    <div class="ui vertical stripe segment">
+    <div id="cropr" class="ui vertical stripe segment">
       <div class="ui container">
         <h3 class="header">Crop Away</h3>
         <div class="ui raised very padded container segment">
-          <div class="ui three column grid">
-            <div class="four wide column">
+          <div class="ui grid">
+            <div class="three wide column">
               <div class="ui vertical accordion menu">
                 <div class="item">
                   <a class="active title"><i class="dropdown icon"></i>Size</a>
@@ -88,6 +83,7 @@
                           <input type="checkbox" id="freeform" name="freeform">
                           <label>Freeform</label>
                         </div>
+                        <button class="compact ui basic button" id="setImageSize"><i class="icon square"></i>Set</button>
                       </div>
                     </div>
                   </div>
@@ -129,18 +125,27 @@
 
               <label class="compact ui basic button">
                 <i class="upload icon"></i>Upload
-                <input id="uploadImage" type='file' accept="image/*" style="display:none" />
+                <input id="uploadImage" type="file" name="file" accept="image/*" style="display:none">
               </label>
 
               <input type="file" id="file" style="display:none">
-              <button class="compact ui basic button"><i class="icon download"></i>Download</button>
-              <button class="compact ui basic button" id="setImageSize"><i class="icon square"></i>Set</button>
-              <button class="compact ui basic button"><i class="icon crop"></i>Crop</button>
+              <button class="compact ui basic button disabled">
+                <a id="download">
+                  <i class="icon download"></i>
+                  Download
+                </a>
+              </button>
+              <button class="compact ui basic button disabled" id="cropImage"><i class="icon crop"></i>Crop</button>
+              <button class="compact ui basic button disabled" id="autoCropImage"><i class="icon image"></i>Auto Crop</button>
             </div>
 
-            <div class="twelve wide column">
-              <div class="ui segment">
+            <div class="thirteen wide column">
+              <div class="ui raised segment">
                 <img id="cropbox" src="resources/image.jpg" style="width: 100% !important" />
+              </div>
+              <div class="ui raised segment disabled" id="result">
+                <img src="resources/img_placeholder.png" id="placeholder" style="width: 100% !important" />
+                <canvas id="canvas" class="hidden">
               </div>
             </div>
           </div>
@@ -148,33 +153,40 @@
       </div>
     </div>
 
-    <div class="ui inverted vertical footer segment">
-      <div class="ui container">
-        <div class="ui stackable inverted divided equal height stackable grid">
-          <div class="three wide column">
-            <h4 class="ui inverted header">Polar</h4>
-            <div class="ui inverted link list">
-              <a href="#" class="item">About Us</a>
-              <a href="#" class="item">Toronto</a>
+    <div class=" ui inverted vertical footer segment ">
+      <div class="ui container ">
+        <div class="ui stackable inverted divided equal height stackable grid ">
+          <div class="three wide column ">
+            <h4 class="ui inverted header ">Polar</h4>
+            <div class="ui inverted link list ">
+              <a href="# " class="item ">About Us</a>
+              <a href="# " class="item ">Toronto</a>
             </div>
           </div>
-          <div class="three wide column">
-            <h4 class="ui inverted header">Help</h4>
-            <div class="ui inverted link list">
-              <a href="#" class="item">FAQ</a>
-              <a href="#" class="item">Source Code</a>
+          <div class="three wide column ">
+            <h4 class="ui inverted header ">Help</h4>
+            <div class="ui inverted link list ">
+              <a href="# " class="item ">FAQ</a>
+              <a href="# " class="item ">Source Code</a>
             </div>
           </div>
-          <div class="seven wide column">
-            <h4 class="ui inverted header">Made by Polar</h4>
+          <div class="ten wide column ">
+            <h4 class="ui inverted header ">Made by Polar</h4>
             <p>With Love</p>
-            <i class="heart icon"></i>
+            <i class="heart icon "></i>
           </div>
         </div>
       </div>
     </div>
   </div>
-
+  <script src=smartcrop/underscore.js></script>
+  <script src=smartcrop/smartcrop.js></script>
+  <script src=smartcrop/smartcrop-debug.js></script>
+  <script src=smartcrop/tracking-min.js></script>
+  <script src=smartcrop/tracking-face-min.js></script>
+  <script src=smartcrop/jquery.facedetection.min.js></script>
+  <!-- <script src=smartcrop/testbed.js></script> -->
+  <script src=script/script.js></script>
 </body>
 
 </html>
