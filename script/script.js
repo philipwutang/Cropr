@@ -214,5 +214,5 @@ $('#autoCropImage').on('click', function() {
 
 $(document).ready(function() {
   initialize();
-  jcrop_api.animateTo([100, 100, 709, 511]);
+  jcrop_api.animateTo([0, 0, 811, 608]);
 });
