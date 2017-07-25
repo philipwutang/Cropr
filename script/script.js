@@ -13,6 +13,7 @@ function initialize() {
     onChange: showCoords,
     onSelect: showCoords,
     bgColor: 'black',
+    boxWidth: 811,
     bgOpacity: 0.4
   });
 
@@ -22,16 +23,11 @@ function initialize() {
   disableRatios();
 }
 
-// Turn on and off ratios
 function disableRatios() {
-  document.getElementById('1:1').checked = false;
-  document.getElementById('3:2').checked = false;
-  document.getElementById('4:3').checked = false;
-  document.getElementById('16:9').checked = false;
-  document.getElementById('square').classList.add('disabled');
-  document.getElementById('3by2').classList.add('disabled');
-  document.getElementById('4by3').classList.add('disabled');
-  document.getElementById('hd').classList.add('disabled');
+  $(':radio').each(function() {
+    this.checked = false;
+    $(this).parent().addClass('disabled');
+  });
 }
 
 function showCrop() {
@@ -41,10 +37,9 @@ function showCrop() {
 }
 
 function enableRatios() {
-  $('#square').removeClass('disabled');
-  $('#3by2').removeClass('disabled');
-  $('#4by3').removeClass('disabled');
-  $('#hd').removeClass('disabled');
+  $('div.ui.radio.checkbox').each(function() {
+    $(this).removeClass('disabled');
+  });
 }
 
 function showCoords(c) {
@@ -87,6 +82,18 @@ function readURL(input) {
 function downloadCanvas(link, canvasId, filename) {
   link.href = document.getElementById(canvasId).toDataURL();
   link.download = filename;
+}
+
+function resize(croppedWidth, croppedHeight) {
+  var newSize = {
+    width: croppedWidth,
+    height: croppedHeight
+  };
+  if (croppedWidth > 811) {
+    newSize.width = 811;
+    newSize.height = 811 * (croppedHeight / croppedWidth);
+  }
+  return newSize;
 }
 
 $('begin').click(function() {
@@ -169,8 +176,10 @@ $('#cropImage').on('click', function() {
   console.log('Regular Crop');
   var canvas = $('#canvas')[0];
   var ctx = canvas.getContext('2d');
-  canvas.width = imageWidth;
-  canvas.height = imageHeight;
+  var newSize = resize(imageWidth, imageHeight);
+  canvas.width = newSize.width;
+  canvas.height = newSize.height;
+
   ctx.drawImage(
     img,
     offsetX,
@@ -195,8 +204,9 @@ $('#autoCropImage').on('click', function() {
     var crop = result.topCrop;
     var canvas = $('#canvas')[0];
     var ctx = canvas.getContext('2d');
-    canvas.width = options.width;
-    canvas.height = options.height;
+    var newSize = resize(options.width, options.height);
+    canvas.width = newSize.width;
+    canvas.height = newSize.height;
     ctx.drawImage(
       img,
       crop.x,
