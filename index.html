@@ -4,23 +4,22 @@
 <head>
   <!-- Standard Meta -->
   <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
   <!-- Site Properties -->
   <title>Cropr - Photo Resizing Made Easy</title>
 
   <link rel="icon" href="http://www.clker.com/cliparts/0/0/8/b/11949945231683916384crop.svg.hi.png">
+  <!-- Import Stylesheets -->
   <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
   <link rel="stylesheet" type="text/css" href="css/master.css">
   <link rel="stylesheet" type="text/css" href="css/jquery.Jcrop.min.css">
 
+  <!-- Import Scripts -->
   <script src="script/jquery.min.js"></script>
   <script src="semantic/components/visibility.min.js"></script>
   <script src="semantic/components/accordion.js"></script>
   <script src="semantic/components/sidebar.min.js"></script>
   <script src="semantic/components/transition.min.js"></script>
-  <script src="semantic/script.js"></script>
   <script src="script/jquery.Jcrop.min.js"></script>
 </head>
 
@@ -28,7 +27,6 @@
   <!-- Page Contents -->
   <div class="pusher">
     <div class="ui inverted vertical masthead center aligned segment">
-
       <div class="ui container">
         <div class="ui large secondary inverted pointing menu">
           <a class="toc item"><i class="sidebar icon"></i></a>
@@ -48,7 +46,6 @@
           <i class="right arrow icon"></i>
         </a>
       </div>
-
     </div>
 
     <div id="cropr" class="ui vertical stripe segment">
@@ -88,6 +85,7 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="item">
                   <a class="active title"><i class="dropdown icon"></i>Presets</a>
                   <div class="active content">
@@ -127,16 +125,20 @@
                 <i class="upload icon"></i>Upload
                 <input id="uploadImage" type="file" name="file" accept="image/*" style="display:none">
               </label>
-
-              <input type="file" id="file" style="display:none">
               <button class="compact ui basic button disabled">
                 <a id="download">
                   <i class="icon download"></i>
                   Download
                 </a>
               </button>
-              <button class="compact ui basic button disabled" id="cropImage"><i class="icon crop"></i>Crop</button>
-              <button class="compact ui basic button disabled" id="autoCropImage"><i class="icon image"></i>Auto Crop</button>
+              <button class="compact ui basic button disabled" id="cropImage">
+                <i class="icon crop"></i>
+                Crop
+              </button>
+              <button class="compact ui basic button disabled" id="autoCropImage">
+                <i class="icon image"></i>
+                Auto Crop
+              </button>
             </div>
 
             <div class="thirteen wide column">
@@ -163,6 +165,7 @@
               <a href="" class="item ">Toronto</a>
             </div>
           </div>
+
           <div class="three wide column ">
             <h4 class="ui inverted header ">Help</h4>
             <div class="ui inverted link list ">
@@ -170,6 +173,7 @@
               <a href="# " class="item ">Source Code</a>
             </div>
           </div>
+
           <div class="ten wide column ">
             <h4 class="ui inverted header ">Made by Polar</h4>
             <p>With Love</p>
@@ -179,13 +183,10 @@
       </div>
     </div>
   </div>
+
   <script src=smartcrop/underscore.js></script>
   <script src=smartcrop/smartcrop.js></script>
   <script src=smartcrop/smartcrop-debug.js></script>
-  <script src=smartcrop/tracking-min.js></script>
-  <script src=smartcrop/tracking-face-min.js></script>
-  <script src=smartcrop/jquery.facedetection.min.js></script>
-  <!-- <script src=smartcrop/testbed.js></script> -->
   <script src=script/script.js></script>
 </body>
 
