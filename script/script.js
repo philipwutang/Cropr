@@ -31,7 +31,7 @@ function disableRatios() {
 }
 
 function showCrop() {
-  $('#result').removeClass('disabled');
+  $('.result').removeClass('disabled');
   $('#placeholder').addClass('hidden');
   $(canvas).removeClass('hidden');
 }
@@ -161,7 +161,6 @@ $('#uploadImage').on('change', function(e) {
   $('#autoCropImage').removeClass('disabled');
   $('#cropImage').removeClass('disabled');
   $('#download').parent().removeClass('disabled');
-  console.log($('#uploadedImage').width());
 });
 
 // Event handler for the download button
@@ -198,7 +197,6 @@ $('#cropImage').on('click', function() {
 $('#autoCropImage').on('click', function() {
   console.log('Auto Crop');
   img = uploadedImage;
-
   var options = { debug: false, width: imageWidth, height: imageHeight };
   smartcrop.crop(img, options, function(result) {
     var crop = result.topCrop;
@@ -219,10 +217,11 @@ $('#autoCropImage').on('click', function() {
       canvas.height
     );
   });
+
   showCrop();
 });
 
 $(document).ready(function() {
   initialize();
-  jcrop_api.animateTo([0, 0, 811, 608]);
+  jcrop_api.animateTo([100, 100, 711, 508]);
 });
