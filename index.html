@@ -4,16 +4,13 @@
 <head>
   <!-- Standard Meta -->
   <meta charset="utf-8" />
-
   <!-- Site Properties -->
   <title>Cropr - Photo Resizing Made Easy</title>
-
   <link rel="icon" href="http://www.clker.com/cliparts/0/0/8/b/11949945231683916384crop.svg.hi.png">
   <!-- Import Stylesheets -->
   <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
   <link rel="stylesheet" type="text/css" href="css/master.css">
   <link rel="stylesheet" type="text/css" href="css/jquery.Jcrop.min.css">
-
   <!-- Import Scripts -->
   <script src="script/jquery.min.js"></script>
   <script src="semantic/components/visibility.min.js"></script>
@@ -21,33 +18,42 @@
   <script src="semantic/components/sidebar.min.js"></script>
   <script src="semantic/components/transition.min.js"></script>
   <script src="script/jquery.Jcrop.min.js"></script>
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 
 <body>
+  <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+  <script>
+  function onSignIn(googleUser) {
+  // Useful data for your client-side scripts:
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Don't send this directly to your server!
+  console.log('Full Name: ' + profile.getName());
+  console.log('Given Name: ' + profile.getGivenName());
+  console.log('Family Name: ' + profile.getFamilyName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail());
+  // The ID token you need to pass to your backend:
+  var id_token = googleUser.getAuthResponse().id_token;
+  console.log('ID Token: ' + id_token);
+}
+</script>
   <!-- Page Contents -->
   <div class="pusher">
     <div class="ui inverted vertical masthead center aligned segment">
       <div class="ui container">
-        <div class="ui large secondary inverted pointing menu">
-          <a class="toc item"><i class="sidebar icon"></i></a>
-          <a class="active item" href="#">Cropr</a>
-          <a class="item">Guide</a>
-          <a class="item" href="https://github.com/philipwutang/Cropr">Source</a>
-          <div class="right item">
-            <a class="ui inverted button" href="http://polar.me/">Visit Polar</a>
-          </div>
+        <div class="ui large secondary inverted pointing menu"> <a class="toc item"><i class="sidebar icon"></i></a> <a class="active item" href="#">Cropr</a> <a class="item">Guide</a> <a class="item" href="https://github.com/philipwutang/Cropr">Source</a>
+          <div class="right item"> <a class="ui inverted button" href="http://polar.me/">Visit Polar</a> </div>
         </div>
       </div>
-
       <div class="ui text container">
         <h1 class="ui inverted header">Cropr</h1>
-        <h2>Photo Resizing Made Easy</h2>
-        <a id="begin" class="ui huge primary button">Begin
+        <h2>Photo Resizing Made Easy</h2> <a id="begin" class="ui huge primary button">Begin
           <i class="right arrow icon"></i>
-        </a>
-      </div>
+        </a> </div>
     </div>
-
     <div id="cropr" class="ui vertical stripe segment">
       <div class="ui container">
         <h3 class="header">Crop Away</h3>
@@ -55,20 +61,17 @@
           <div class="ui grid">
             <div class="three wide column">
               <div class="ui vertical accordion menu">
-                <div class="item">
-                  <a class="active title"><i class="dropdown icon"></i>Size</a>
+                <div class="item"> <a class="active title"><i class="dropdown icon"></i>Size</a>
                   <div class="active content">
                     <div class="ui form">
                       <div class="grouped fields">
                         <div class="field">
-                          <div class="ui right labeled input fluid">
-                            <input type="text" id="width" placeholder="Width">
+                          <div class="ui right labeled input fluid"> <input type="text" id="width" placeholder="Width">
                             <div class="ui basic label">px</div>
                           </div>
                         </div>
                         <div class="field">
-                          <div class="ui right labeled input fluid">
-                            <input type="text" id="height" placeholder="Height">
+                          <div class="ui right labeled input fluid"> <input type="text" id="height" placeholder="Height">
                             <div class="ui basic label">px</div>
                           </div>
                         </div>
@@ -76,79 +79,49 @@
                     </div>
                     <div class="ui form">
                       <div class="grouped fields">
-                        <div class="ui checkbox">
-                          <input type="checkbox" id="freeform" name="freeform">
-                          <label>Freeform</label>
-                        </div>
-                        <button class="compact ui basic button" id="setImageSize"><i class="icon square"></i>Set</button>
-                      </div>
+                        <div class="ui checkbox"> <input type="checkbox" id="freeform" name="freeform"> <label>Freeform</label> </div> <button class="compact ui basic button" id="setImageSize"><i class="icon square"></i>Set</button> </div>
                     </div>
                   </div>
                 </div>
-
-                <div class="item">
-                  <a class="active title"><i class="dropdown icon"></i>Presets</a>
+                <div class="item"> <a class="active title"><i class="dropdown icon"></i>Presets</a>
                   <div class="active content">
                     <div class="ui">
                       <div class="grouped fields">
                         <div class="field size-selector">
-                          <div class="ui radio checkbox" id="square">
-                            <input type="radio" id="1:1" name="ratio" />
-                            <label>1:1 (Square)</label>
-                          </div>
+                          <div class="ui radio checkbox" id="square"> <input type="radio" id="1:1" name="ratio" /> <label>1:1 (Square)</label> </div>
                         </div>
                         <div class="field size-selector">
-                          <div class="ui radio checkbox" id="3by2">
-                            <input type="radio" id="3:2" name="ratio" />
-                            <label>3:2</label>
-                          </div>
+                          <div class="ui radio checkbox" id="3by2"> <input type="radio" id="3:2" name="ratio" /> <label>3:2</label> </div>
                         </div>
                         <div class="field size-selector">
-                          <div class="ui radio checkbox" id="4by3">
-                            <input type="radio" id="4:3" name="ratio" />
-                            <label>4:3</label>
-                          </div>
+                          <div class="ui radio checkbox" id="4by3"> <input type="radio" id="4:3" name="ratio" /> <label>4:3</label> </div>
                         </div>
                         <div class="field size-selector">
-                          <div class="ui radio checkbox" id="hd">
-                            <input type="radio" id="16:9" name="ratio" />
-                            <label>16:9</label>
-                          </div>
+                          <div class="ui radio checkbox" id="hd"> <input type="radio" id="16:9" name="ratio" /> <label>16:9</label> </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-
-              <label class="compact ui basic button">
+              </div> <label class="compact ui basic button">
                 <i class="upload icon"></i>Upload
                 <input id="uploadImage" type="file" name="file" accept="image/*" style="display:none">
-              </label>
-              <button class="compact ui basic button disabled">
+              </label> <button class="compact ui basic button disabled">
                 <a id="download">
                   <i class="icon download"></i>
                   Download
                 </a>
-              </button>
-              <button class="compact ui basic button disabled" id="cropImage">
+              </button> <button class="compact ui basic button disabled" id="cropImage">
                 <i class="icon crop"></i>
                 Crop
-              </button>
-              <button class="compact ui basic button disabled" id="autoCropImage">
+              </button> <button class="compact ui basic button disabled" id="autoCropImage">
                 <i class="icon image"></i>
                 Auto Crop
-              </button>
-            </div>
-
+              </button> </div>
             <div class="thirteen wide column">
-              <div class="ui raised segment">
-                <img id="cropbox" src="resources/image.jpg" style="width: 100% !important" />
-              </div>
+              <div class="ui raised segment"> <img id="cropbox" src="resources/image.jpg" style="width: 100% !important" /> </div>
               <h3 class="header">Result</h3>
-              <div class="ui raised segment disabled result">
-                <img src="resources/img_placeholder.png" id="placeholder" style="width: 100% !important" />
-                <canvas id="canvas" class="hidden">
+              <div class="ui raised segment disabled result"> <img src="resources/img_placeholder.png" id="placeholder" style="width: 100% !important" /> <canvas id="canvas" class="hidden">
               </div>
               <h3 class="header">Cropped Images</h3>
               <div class="ui raised segment disabled result" id="oldImages">
