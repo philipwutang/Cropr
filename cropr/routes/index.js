@@ -3,8 +3,6 @@ var passport = require('passport');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
-  var status = 'signedOut';
-  console.log(req.isAuthenticated());
   res.render('index', { status: req.isAuthenticated() });
 });
 
@@ -14,6 +12,10 @@ router.get('/login', function(req, res, next) {
 
 router.get('/signup', function(req, res) {
   res.render('signup.ejs', { message: req.flash('loginMessage') });
+});
+
+router.get('/crop', isLoggedIn, function(req, res) {
+  res.render('crop.ejs');
 });
 
 router.get('/profile', isLoggedIn, function(req, res) {
@@ -37,7 +39,7 @@ router.post(
 router.post(
   '/login',
   passport.authenticate('local-login', {
-    successRedirect: '/',
+    successRedirect: '/crop',
     failureRedirect: '/login',
     failureFlash: true
   })
