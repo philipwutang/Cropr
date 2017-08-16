@@ -16,7 +16,7 @@
 </div>
 
 <div style="width: 25%; margin: 10% auto;">
-  <% if (message != null) { %>
+  <% if (message != "") { %>
     <div class="alert-danger"><%= message %></div>
   <% } %>
   <form class="ui form" action="/signup" method="post">
