@@ -7,7 +7,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
-  res.render('login.ejs', { message: req.flash('loginMessage') });
+  res.render('login.ejs', {
+    message: req.flash('loginMessage')
+  });
 });
 
 router.get('/signup', function(req, res) {
