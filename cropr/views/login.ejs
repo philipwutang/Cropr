@@ -9,15 +9,15 @@
       <a class="active item" href="/">Cropr</a>
       <a class="item" href="https://github.com/philipwutang/Cropr">Source</a>
       <div class="right item">
-        <a class="ui inverted button" href="login">Login</a>
+        <a class="ui inverted button" href\="login">Login</a>
       </div>
     </div>
   </div>
 </div>
 
 <div style="width: 25%; margin: 10% auto;">
-  <% if (message != null) { %>
-    <div class="ui warning message">
+  <% if (message != "") { %>
+    <div class="ui error message">
       <div class="header">
         <%= message %>
       </div>

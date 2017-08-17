@@ -84,6 +84,10 @@ function downloadCanvas(link, canvasId, filename) {
   link.download = filename;
 }
 
+function saveCanvas() {
+  return document.getElementById('canvas').toDataURL();
+}
+
 function resize(croppedWidth, croppedHeight) {
   var newSize = {
     width: croppedWidth,
@@ -160,6 +164,7 @@ $('#uploadImage').on('change', function(e) {
   readURL(this);
   $('#autoCropImage').removeClass('disabled');
   $('#cropImage').removeClass('disabled');
+  $('#saveImage').removeClass('disabled');
   $('#download').parent().removeClass('disabled');
 });
 
@@ -191,6 +196,12 @@ $('#cropImage').on('click', function() {
     canvas.height
   );
   showCrop();
+});
+
+$('#saveImage').on('click', function() {
+  // Add image to array
+  console.log('Saving...');
+  saveCanvas();
 });
 
 // Event handler for the auto crop button
