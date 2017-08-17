@@ -17,7 +17,7 @@ router.get('/signup', function(req, res) {
 });
 
 router.get('/crop', isLoggedIn, function(req, res) {
-  res.render('crop.ejs');
+  res.render('crop.ejs', { user: req.user });
 });
 
 router.get('/profile', isLoggedIn, function(req, res) {
@@ -28,6 +28,8 @@ router.get('/logout', function(req, res) {
   req.logout();
   res.redirect('/');
 });
+
+router.post('/upload');
 
 router.post(
   '/signup',

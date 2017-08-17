@@ -2,8 +2,8 @@
 
 <div class="ui inverted vertical masthead center aligned segment">
   <div class="ui container">
-    <div class="ui large secondary inverted pointing menu"> <a class="toc item"><i class="sidebar icon"></i></a> <a class="active item" href="#">Cropr</a> <a class="item" href="https://github.com/philipwutang/Cropr">Source</a>
-      <div class="right item"> <a class="ui inverted button" href="http://polar.me/">Visit Polar</a> </div>
+    <div class="ui large secondary inverted pointing menu"> <a class="toc item"><i class="sidebar icon"></i></a> <a class="active item" href="/">Cropr</a> <a class="item" href="https://github.com/philipwutang/Cropr">Source</a>
+      <div class="right item"> <a class="ui inverted button" href="/logout">Log Out</a> </div>
     </div>
   </div>
   <div class="ui text container">
@@ -74,7 +74,12 @@
           </button> <button class="compact ui basic button disabled" id="autoCropImage">
             <i class="icon image"></i>
             Auto Crop
-          </button> </div>
+          </button>
+          <button class="compact ui basic button disabled" id="saveImage">
+            <i class="icon save"></i>
+            Save
+          </button>
+         </div>
         <div class="thirteen wide column">
           <div class="ui raised segment"> <img id="cropbox" src="resources/image.jpg" style="width: 100% !important" /> </div>
           <h3 class="header">Result</h3>
@@ -82,6 +87,11 @@
           </div>
           <h3 class="header">Cropped Images</h3>
           <div class="ui raised segment disabled result" id="oldImages">
+            <ul>
+            <% for(var i=0; i<user.local.collection.length; i++) {%>
+               <li><%= user.local.collection[i] %></li>
+            <% } %>
+            </ul>
           </div>
         </div>
       </div>
