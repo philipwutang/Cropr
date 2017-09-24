@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var multer = require('multer');
 var bodyParser = require('body-parser');
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 8080;
 
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
